@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Except. — Mastech booth walkthrough</title>
+<meta name="description" content="A concept exhibition stand for Mastech. Turn the warehouse record and watch the answer change.">
+<meta name="theme-color" content="#0A3D2C">
+<meta property="og:title" content="Except. — Mastech booth walkthrough">
+<meta property="og:description" content="Turn the warehouse record and watch the answer change. Exhibition concept by Ketan Bhosale.">
+<meta property="og:image" content="assets/booth-open.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230A3D2C'/%3E%3Crect x='6' y='13' width='20' height='8' fill='%2300E37A'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+<script type="importmap">
+{ "imports": { "three": "./vendor/three.module.js", "three/addons/": "./vendor/addons/" } }
+</script>
+</head>
+<body>
+<header class="bar">
+  <img src="assets/mastech-logo-dark.svg" alt="Mastech" class="logo">
+  <span class="mono sep">Virtual exhibition</span>
+  <button id="restart" class="btn ghost" hidden>Back to the aisle</button>
+</header>
+
+<main>
+  <div id="stage" role="application" aria-label="Interactive booth. Drag to look around. Press E or use the Turn the record button to turn the warehouse record.">
+    <canvas id="view"></canvas>
+    <button id="hot-record" class="hot" hidden><i></i><span>Turn the record</span></button>
+    <button id="hot-table" class="hot" hidden><i></i><span>Fill in a card</span></button>
+  </div>
+
+  <section id="intro" class="intro" aria-labelledby="t">
+    <h1 id="t">Except.</h1>
+    <p>How many units can you promise? Step in and check the warehouse record.</p>
+    <button id="enter" class="btn light" disabled>Loading the booth…</button>
+  </section>
+
+  <div id="controls" class="controls" hidden>
+    <nav class="views" aria-label="Viewpoints">
+      <button class="chip on" data-view="aisle">Aisle</button>
+      <button class="chip" data-view="record">Record</button>
+      <button class="chip" data-view="table">Table</button>
+    </nav>
+    <p id="status" class="status" role="status" aria-live="polite">The AI's draft says 240 units are on hand.</p>
+    <div class="acts">
+      <button id="turn" class="btn light">Turn the record</button>
+      <button id="card" class="btn line">Fill in a card</button>
+    </div>
+  </div>
+
+  <div id="fallback" class="fallback" hidden>
+    <img src="assets/booth-open.jpg" alt="The Mastech concept booth with the warehouse record turned: 180 units already promised, 60 available to promise.">
+    <p>This device could not start the 3D view, so here is a picture of the booth with the record turned.</p>
+  </div>
+</main>
+
+<dialog id="dlg" aria-labelledby="dt">
+  <form method="dialog" id="cardform" novalidate>
+    <p class="mono k">Your exception</p>
+    <h2 id="dt">Bring us one exception.</h2>
+    <p class="eg">In our example, the AI counted 240 units. The warehouse record showed 180 already promised. We could offer 60.</p>
+    <label>What's the rule?<input id="q1" placeholder="Offer the stock on hand" autocomplete="off"></label>
+    <label>When does it change?<input id="q2" placeholder="When units are already promised" autocomplete="off"></label>
+    <label>Where is that recorded?<input id="q3" placeholder="Open orders in the warehouse record" autocomplete="off"></label>
+    <p id="cardmsg" class="mono msg" role="status">Your answers stay in this tab. Copy the card to take it with you.</p>
+    <div class="row"><button type="button" id="copy" class="btn dark">Copy my card</button><button type="submit" class="btn line darkline">Close</button></div>
+  </form>
+</dialog>
+
+<footer class="foot mono"><span>Exhibition concept by Ketan Bhosale</span><span>Illustrative retail scenario</span></footer>
+<script type="module" src="main.js"></script>
+</body>
+</html>
